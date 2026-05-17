@@ -1,0 +1,52 @@
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div style="display: flex; justify-content: space-between; padding: 0px 100px;">
+        
+        <div id="notes">
+            Loading.....
+        </div>
+
+        <div>
+            <input type="text" id="userNote">
+            <button onclick="addtodo()">Create New Note</button>
+        </div>
+
+    </div>
+
+    <script>
+        async function addtodo(){
+            await axios.post("http://localhost:3000/notes", {
+                note: document.getElementById("userNote").value
+            });
+
+            console.log("Note added");
+
+            // refresh notes
+            document.getElementById("notes").innerHTML = "";
+            getTodos();
+        }
+
+        async function getTodos(){
+            const response = await axios.get("http://localhost:3000/notes");
+
+            const notes = response.data.notes;
+
+            document.getElementById("notes").innerHTML = "";
+
+            for(let i = 0; i < notes.length; i++){
+                const newNote = document.createElement("div");
+                newNote.setAttribute("style","border: 2px solid black; padding:10px; margin:5px");
+
+                newNote.innerText = notes[i]; // display note
+
+                document.getElementById("notes").appendChild(newNote);
+            }
+        }
+
+        getTodos();
+    </script>
+</body>
+</html>

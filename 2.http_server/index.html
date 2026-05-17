@@ -1,0 +1,44 @@
+<html>
+    <body>
+        <input id="first" type="text" placeholder="First Number">
+        <input id="second" type="text" placeholder="Second Number">
+        <script>
+            async function add(){
+                const a = parseInt(document.getElementById("first").value);
+                const b = parseInt(document.getElementById("second").value);
+
+                const res = await fetch("http://localhost:3000/sum",{
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body:JSON.stringify({a,b})
+                });
+                const json = await res.json()
+                document.getElementById("response").innerHTML = json.ans;
+            }
+            async function mul(){
+                const a = parseInt(document.getElementById("first").value);
+                const b = parseInt(document.getElementById("second").value);
+
+                const res = await fetch("http://localhost:3000/mul",{
+                    method:"POST",
+                    headers:{
+                        "Content-Type": "application/json"
+                    },
+                    body:JSON.stringify({a,b})
+                });
+                const json = await res.json()
+                document.getElementById("response").innerHTML = json.ans;
+            }
+            
+        </script>
+        <button onclick="add()">Add</button>
+        <button>Sub</button>
+        <button onclick="mul()">Mul</button>
+        <button>Div</button>
+        
+
+        <div id="response"></div>
+    </body>
+</html>
