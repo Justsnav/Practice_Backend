@@ -4,7 +4,7 @@
 //const USERS = [];
 //let TODOS = [];
 const mongoose = require("mongoose");
-mongoose.connect("mongodb+srv://abhinavsingh882005_db_user:vGuCtkdOLHzKf8ld@todo.6ag6bdr.mongodb.net/todo")//write the address of the mongoose where i want to add the data
+mongoose.connect("write the address of the mongoose where i want to add the data")
 //for all cluster creates a mongoose schema and model object
 
 //Schema- It tells us how the schema looks for the data means how the data is going to look
